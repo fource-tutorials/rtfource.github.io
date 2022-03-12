@@ -1,0 +1,158 @@
+<?php
+
+if (isset($_POST['submitted']))
+{
+include('doubt.php');
+$fname=$_POST['fname'];
+$lname=$_POST['lname'];
+$sqlinsert="Table name(firstname,lastname,School/occupation,Place,Contactno,Email,Comment/question) VALUES('$fname','$lname','occupation','place','cno','email,'comment')";
+if(!mysql_query($dbcon,$sqlinsert))
+{
+ die('error inserting new record');
+}
+ $newrecord="1 record added to the database";
+}
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RT Biology</title>
+<script>
+function form1()
+{
+ var reg=/^[a-zA-Z]*$/;
+if(reg.test(document.getElementById("uname").value))
+{
+return true;
+}
+else
+{
+window.alert("enter alphabets");
+return false;
+}
+}
+function find()
+{
+ var a=document.getElementById("pname").value;
+if((a.length)<8)
+{
+window.alert("enter 10 digit no.");
+return false;
+}
+}
+
+</script>
+<link rel="stylesheet" href="css/style1.css">
+<link href="css/style.css" rel="stylesheet" type="text/css" /></head>
+<body>
+<div class="content">
+  <div id="container">
+  <div id="header">
+    <ul>
+      <li><a href="home.html"><img src="home.png" width="25" height="25"></a></li>
+      <li><a href="assign.html">Assignments</a></li>
+      <li><a href="download.html">Downloads</a></li>
+      <li><a href="video.html">Videos</a></li>
+      <li><a href="botany.html">Botany</a></li>
+      <li><a href="zoology.html">Zoology</a></li>
+      <li><a href="board.html">Board papers</a></li>
+      <li><a href="samplepaper.html">Sample paper</a></li>
+      <li><a href="doubt.html">Got a doubt?</a></li>
+      <li><a href="contact.html">Feedback </a></li>
+      </ul>
+  </div>
+ <div class="sect sectdoubt" ><br><br><br><br><br><br><br><br>
+    <font size="200" face="Arial" color:"black"><center>Doubt..?</center></font>
+    <br><br><br><br><br><br></div>
+    <div class="subsection"><br><br></div>
+  <div id="content">
+   <p class="content__teaser"  style="text-align:center;">Please leave your comment or questions here.</p>
+   <center>
+<form method="post" action="insertingdata.php">
+<input type="hidden" name="submitted" value="true" />
+<table>
+  <tr>
+  <tr><th colspan="2">Name</th></tr>
+  <td>First name:</td>
+  <td><input type="text" name="fname" style="width: 400px;" required onBlur="form1();"></td>
+  </tr>
+  <tr>
+    <td>Last name:</td>
+    <td><input type="text" name="lname" style="width: 400px;" required></td>
+  </tr>
+  <tr>
+    <td>School/Occupation</td>
+    <td><input type="text" name="occupation"style="width: 400px;" required></td>
+  </tr>
+  <tr>
+    <td>Place</td>
+    <td><input type="text" name="place"style="width: 400px;" required></td>
+  </tr>
+   <tr>
+    <td>Contact No.</td>
+    <td><input type="number" name="cno"style="width: 400px;" required onBlur="find();"></td>
+  </tr>
+    <tr>
+    <td>Email</td>
+    <td><input type="email" name="email" style="width: 400px;" required></td>
+  </tr>
+  </tr>
+    <tr>
+    <td>Comment/Question</td>
+    <td><textarea style="height: 100px; width: 400px;" required name="comment"></textarea></td>
+  </tr>
+    <tr>
+    <th colspan="2"><center><input type="submit" value="Submit"></center></th>
+  </tr>
+  </table>
+</form>
+<? php
+echo $newrecord
+?>
+</center>
+</div>
+ <div id="footer">
+  <div>
+    <p>&copy; 2016 RD. <span>created by <a href="#">RajanDas & Tarleen Sethi</a></span></p>
+  </div>
+</div>
+
+ 
+ </div>
+ <div class="subsection"><br><br><br>
+     <font size="800" face="Comic Sans MS" color="black"><center>Connect with Us</center></font><br><br>
+     <a href="http://facebook.com"><img src="fb.svg" width="120" height="120"></a>
+     <a href="https://twitter.com/login"><img src="twit.png" width="120" height="120"></a>
+     <a href="https://www.pinterest.com/"><img src="pinterest.png" width="120" height="120"></a>
+       <a href="https://www.instagram.com/?hl=en"><img src="insta.png" width="120" height="120"></a>
+       <a href="https://www.instagram.com/?hl=en"><img src="g+.png" width="120" height="120"></a>
+
+
+    </div>
+</div><!-- /content -->
+
+
+<video id="my-video" class="video" muted loop>
+  <source src="media/doubt.mp4" type="video/mp4">
+  
+<source src="media/demo.ogv" type="video/ogg">
+  <source src="media/demo.webm" type="video/webm">
+
+</video><!-- /video -->
+
+<script>
+(function()
+ {
+  var video = document.getElementById("my-video");
+  video.addEventListener( "canplay", function() {
+  video.play();
+  });
+})();
+
+</script>
+
+
+</body>
+
+</html>
